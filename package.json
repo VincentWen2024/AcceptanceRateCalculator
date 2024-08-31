@@ -1,5 +1,4 @@
 {
-//  "homepage": "http://vincentwen2024.github.io/AcceptanceRateCalculator",
   "name": "learn-react",
   "private": true,
   "version": "0.0.0",
@@ -7,10 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-//    "preview": "vite preview",
-    "predeploy" : "npm run build",
-    "deploy": "gh-pages -d dist --reset"
+    "lint": "eslint ."
   },
   "dependencies": {
     "react": "^18.3.1",
