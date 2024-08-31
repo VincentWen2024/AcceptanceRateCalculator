@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function SchoolList() {
+function Calculator() {
     const [schools, setSchools] = useState([]);
     const [newSchool, setNewSchool] = useState("");
     const [newAcceptanceRate, setNewAcceptanceRate] = useState('');
@@ -20,12 +20,13 @@ function SchoolList() {
     function handleCheckBoxChange(event) {
         const {name, checked} = event.target;
         const index = parseInt(name, 10);
+        const selectedSchool = schools[index];
 
         setOperatingSchool(prev => {
             if (checked) {
-                return [...prev, schools[index]];
+                return [...prev, selectedSchool];
             } else {
-                return prev.filter((_, i) => i !== index);
+                return prev.filter(school => school.name !== selectedSchool.name);
             }
         });
     }
@@ -50,7 +51,7 @@ function SchoolList() {
                 const updatedSchools = [...s, school];
                 return updatedSchools;
             });
-            // setOperatingSchool((s) => [...s, school])
+            setOperatingSchool((s) => [...s, school])
 
             setNewSchool("");
             setNewAcceptanceRate('');
@@ -74,7 +75,7 @@ function SchoolList() {
     return (
         <div className="school-list">
             <h1>录取概率计算器</h1>
-            <div>
+            <div className={"input-group"}>
                 <input
                     name={"schoolName"}
                     type={"text"}
@@ -137,4 +138,4 @@ function SchoolList() {
     )
 }
 
-export default SchoolList;
+export default Calculator;

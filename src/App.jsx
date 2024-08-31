@@ -1,8 +1,8 @@
-import SchoolList from "./SchoolList.jsx";
+import Calculator from "./Calculator.jsx";
 
 function App() {
   return(
-    <SchoolList></SchoolList>
+    <Calculator></Calculator>
   )
 }
 
