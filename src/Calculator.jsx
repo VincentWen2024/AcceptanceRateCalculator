@@ -74,7 +74,11 @@ function Calculator() {
         const newDenyRate = calculateRate(operatingSchool);
         setAllDenyRate(converRate(newDenyRate));
         setAnyAccRate(converRate(1 - newDenyRate));
-    }, [operatingSchool]);  // 添加 schools 作为依赖项
+        if(operatingSchool.length ===0){
+            setAllDenyRate(0);
+            setAnyAccRate(0);
+        }
+    }, [operatingSchool]);  // 添加 `school`s 作为依赖项
 
     return (
         <div className="school-list">
@@ -84,28 +88,28 @@ function Calculator() {
                 <input
                     name={"schoolName"}
                     type={"text"}
-                    placeholder={"School name"}
+                    placeholder={"学校"}
                     value={newSchool}
                     onChange={handleInputChange}
                 />
                 <input
                     name={"acceptanceRate"}
                     type={"text"}
-                    placeholder={"Estimated acceptance rate"}
+                    placeholder={"预估录取率"}
                     value={newAcceptanceRate}
                     onChange={handleInputChange}
                 />
                 <button
                     className={"add-button"}
                     onClick={addSchool}>
-                    add
+                    添加
                 </button>
             </div>
             {/*学校列表部分*/}
             <ul>
                 <li className={"school-list-li"}>
-                    <span>School</span>
-                    <span>Acceptance Rate</span>
+                    <span>学校</span>
+                    <span>录取率</span>
                     <span>
                         <button className={"delete-button"}
                                 style={{
@@ -134,9 +138,9 @@ function Calculator() {
                 )}
             </ul>
             <div className={"all-deny-rate"}>
-                <div>AllRejectRate</div>
+                <div>全拒概率</div>
                 <div>{allDenyRate}</div>
-                <div>Accepted by at least one school rate</div>
+                <div>至少被一所录取概率</div>
                 <div>{anyAccRate}</div>
             </div>
         </div>
