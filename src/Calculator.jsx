@@ -5,7 +5,7 @@ function Calculator() {
     const [newSchool, setNewSchool] = useState("");
     const [newAcceptanceRate, setNewAcceptanceRate] = useState('');
     const [allDenyRate, setAllDenyRate] = useState(0)
-    const [anyAccRate, setAnyAccRate] = useState(1)
+    const [anyAccRate, setAnyAccRate] = useState(0)
     const [operatingSchool, setOperatingSchool] = useState([])
 
     function handleInputChange(event) {
@@ -84,14 +84,14 @@ function Calculator() {
                 <input
                     name={"schoolName"}
                     type={"text"}
-                    placeholder={"输入学校"}
+                    placeholder={"School name"}
                     value={newSchool}
                     onChange={handleInputChange}
                 />
                 <input
                     name={"acceptanceRate"}
                     type={"text"}
-                    placeholder={"输入预估录取率"}
+                    placeholder={"Estimated acceptance rate"}
                     value={newAcceptanceRate}
                     onChange={handleInputChange}
                 />
@@ -104,8 +104,8 @@ function Calculator() {
             {/*学校列表部分*/}
             <ul>
                 <li className={"school-list-li"}>
-                    <span>学校</span>
-                    <span>录取率</span>
+                    <span>School</span>
+                    <span>Acceptance Rate</span>
                     <span>
                         <button className={"delete-button"}
                                 style={{
@@ -134,9 +134,9 @@ function Calculator() {
                 )}
             </ul>
             <div className={"all-deny-rate"}>
-                <div>全拒概率</div>
+                <div>AllRejectRate</div>
                 <div>{allDenyRate}</div>
-                <div>至少一所录取概率</div>
+                <div>Accepted by at least one school rate</div>
                 <div>{anyAccRate}</div>
             </div>
         </div>
