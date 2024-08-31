@@ -9,10 +9,13 @@ function Calculator() {
     const [operatingSchool, setOperatingSchool] = useState([])
 
     function handleInputChange(event) {
-        const {name, value} = event.target;
+        let {name, value} = event.target;
         if (name === "schoolName") {
             setNewSchool(value);
         } else if (name === "acceptanceRate") {
+            if (value.length > 3){
+                value = value.substring(0,2)
+            }
             setNewAcceptanceRate(value.replace("%", "") + "%");
         }
     }
@@ -45,8 +48,9 @@ function Calculator() {
     }
 
     function addSchool() {
-        if (newSchool.trim() !== "" && newAcceptanceRate.trim() !== "") {
-            let school = {name: newSchool, accrate: newAcceptanceRate};
+        if (newAcceptanceRate.trim() !== "") {
+            const schoolName = newSchool.trim() !== "" ? newSchool : "untitled";
+            let school = {name: schoolName, accrate: newAcceptanceRate};
             setSchools(s => {
                 const updatedSchools = [...s, school];
                 return updatedSchools;
@@ -74,7 +78,8 @@ function Calculator() {
 
     return (
         <div className="school-list">
-            <h1>录取概率计算器</h1>
+            <h1>AcceptanceRateCalculator</h1>
+            <p>请根据对自己学术能力的了解，预估每个学校对自己的录取率。计算器将根据你的预估数值，计算出被全部拒绝的概率和被至少一所学校录取的概率。学校名称非必填项。</p>
             <div className={"input-group"}>
                 <input
                     name={"schoolName"}
@@ -86,7 +91,7 @@ function Calculator() {
                 <input
                     name={"acceptanceRate"}
                     type={"text"}
-                    placeholder={"输入录取率"}
+                    placeholder={"输入预估录取率"}
                     value={newAcceptanceRate}
                     onChange={handleInputChange}
                 />
